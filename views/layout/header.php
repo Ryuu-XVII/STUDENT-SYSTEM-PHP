@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/flash.php";
+require_once __DIR__ . "/../../includes/flash.php";
 
 $activeSection = $activeSection ?? "";
 $flash = flash_get();
