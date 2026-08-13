@@ -32,24 +32,46 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $error = "Invalid username or password.";
 }
-
-require "includes/header.php";
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — CourseHub</title>
+    <link rel="stylesheet" href="/coursehub/css/style.css">
+</head>
+<body>
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="brand">
+            <span class="brand-mark">CH</span>
+            CourseHub
+        </div>
+        <h1>Welcome back</h1>
+        <p class="subtitle">Sign in to manage students and courses.</p>
 
-<h1>Login</h1>
+        <?php if ($error): ?>
+            <div class="alert alert-error">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                <span><?= htmlspecialchars($error) ?></span>
+            </div>
+        <?php endif; ?>
 
-<?php if ($error): ?>
-    <p class="error"><?= htmlspecialchars($error) ?></p>
-<?php endif; ?>
+        <form method="post">
+            <div class="field">
+                <label>Username</label>
+                <input name="username" value="<?= htmlspecialchars($_POST["username"] ?? "") ?>" required autofocus>
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input name="password" type="password" required>
+            </div>
+            <button type="submit">Sign in</button>
+        </form>
 
-<form method="post">
-    <label>Username</label>
-    <input name="username" required autofocus>
-
-    <label>Password</label>
-    <input name="password" type="password" required>
-
-    <button type="submit">Login</button>
-</form>
-
-<?php require "includes/footer.php"; ?>
+        <p class="auth-hint">Default admin: admin / ChangeMe123!</p>
+    </div>
+</div>
+</body>
+</html>
