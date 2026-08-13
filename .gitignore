@@ -1,0 +1,10 @@
+# Local configuration
+.env
+config/local.php
+
+# Editor / OS
+.vscode/
+.DS_Store
+
+# Claude Code local settings
+.claude/
